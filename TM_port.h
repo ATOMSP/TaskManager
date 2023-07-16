@@ -6,9 +6,15 @@
 extern "C"{
 #endif
 
-/* set the Macro according to your platform  example : unsigned int */
+/* set the Macro according to your platform  example : 0：PC 1：arm32 */
+#define PLATFORM_PC     (0)
+#define PLATFORM_ARM32  (~PLATFORM_PC)
 #ifndef Time_t
-    #define Time_t  unsigned __int64
+    #if PLATFORM_PC
+        #define Time_t  unsigned __int64
+    #elif PLATFORM_ARM32
+        #define Time_t  unsigned int
+    #endif
 #endif
 
 /* put your debug output here example : printf */
